@@ -26,6 +26,11 @@ module.exports = {
       indigo: colors.indigo,
       purple: colors.violet,
       pink: colors.pink,
+      eggshell: '#f4f1deff',
+      terraCotta: '#e07a5fff',
+      independence: '#3d405bff',
+      greenSheen: '#81b29aff',
+      deepChampagne: '#f2cc8fff',
     },
     spacing: {
       px: '1px',
