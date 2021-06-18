@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>VRS Masterarbeitsstudie Joelle</h1>
+    <h1 class="text-red-500">VRS Masterarbeitsstudie Joelle</h1>
     <p>Vielen Dank erstmal, dass du an meiner User Study teilnimmst!🥳</p>
     <p>
       Im Rahmen der Studie musst du mit meiner selbst gebauten Messstudie 3
