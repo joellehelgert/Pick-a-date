@@ -5,7 +5,17 @@
     little shy!
   </div>
   <div v-if="!loading" class="Calendar">
-    <button @click="selectTimeslots">Termine auswählen</button>
+    <button
+      class="
+        p-3
+        bg-yellow-100 bg-greenSheen
+        border border-greenSheen
+        text-white
+      "
+      @click="selectTimeslots"
+    >
+      Termine auswählen
+    </button>
     <div class="KW" v-for="date in dates" :key="date.KW">
       <h2>KW {{ date.KW }}</h2>
 
@@ -73,12 +83,23 @@ export default {
   },
   methods: {
     selectTimeslots: function (e) {
-      console.log("selectinga ll", e);
+      console.log("selecting all", e);
+      axios({
+        method: "post",
+        url: "/data/data.json",
+        data: this.dates,
+      });
+      // axios
+      //   .post("/data/data.json", this.dates)
+      //   .then((response) => {
+      //     console.log(response);
+      //   })
+      //   .catch((error) => {
+      //     console.error(error);
+      //     this.error = error;
+      //   });
     },
     updateValue: function (updatable) {
-      console.log("emitted");
-      console.log("timeslot emitted", updatable);
-
       this.dates.forEach((elem) => {
         if (elem.KW == updatable.kw) {
           elem.days.forEach((day) => {

@@ -15,18 +15,33 @@
       Fall gesorgt!
     </p>
 
-    <Input msg="Welcome to Your Vue.js App" />
+    <router-link
+      class="
+        p-3
+        bg-yellow-100 bg-greenSheen
+        border border-greenSheen
+        text-white
+      "
+      to="/selection"
+      >Zur Terminauswahl</router-link
+    >
+    <router-link
+      class="
+        p-3
+        ml-3
+        bg-yellow-100 bg-greenSheen
+        border border-greenSheen
+        text-white
+      "
+      to="/overview"
+      >Zur Terminübersicht
+    </router-link>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import Input from "@/components/Input.vue";
-
 export default {
   name: "Home",
-  components: {
-    Input,
-  },
+  components: {},
 };
 </script>
