@@ -1,7 +1,7 @@
 <template>
   <div class="overview">
     <h1>Terminübersicht</h1>
-    <Calendar> </Calendar>
+    <Calendar username="Joelle"> </Calendar>
   </div>
 </template>
 

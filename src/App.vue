@@ -4,6 +4,6 @@
     <router-link to="/selection">Terminauswahl</router-link> |
     <router-link to="/overview">Terminübersicht</router-link>
   </div>
-  <router-view />
+  <router-view class="m-3" />
 </template>
 

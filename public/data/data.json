@@ -3,8 +3,9 @@
     "KW": 25,
     "days": [
       {
-        "day": "25.06.21",
-        "dates": [
+        "date": "25.06.21",
+        "day": "Freitag",
+        "timeslots": [
           {
             "time": "8:00 - 8:30",
             "name": ""
@@ -37,8 +38,9 @@
     "KW": 26,
     "days": [
       {
-        "day": "01.07.21",
-        "dates": [
+        "date": "01.07.21",
+        "day": "Freitag",
+        "timeslots": [
           {
             "time": "8:00 - 8:30",
             "name": ""
