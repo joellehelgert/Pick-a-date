@@ -3,10 +3,17 @@
     <Calendar :username="username" />
   </div>
   <div v-else>
-    <input v-model="username" type="text" class="border p-3 b-r-0" />
+    <input
+      v-model="username"
+      placeholder="dein Name"
+      type="text"
+      class="w-4/6 text-lg border p-3 b-r-0"
+    />
     <button
       class="
         p-3
+        text-lg
+        rounded-r
         bg-yellow-100 bg-greenSheen
         border border-greenSheen
         text-white

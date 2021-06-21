@@ -1,12 +1,15 @@
 <template>
   <li
-    class="timeslot p-5 m-3 rounded bg-deepChampagne"
+    class="timeslot p-5 m-3 rounded border-2 border-transparent"
+    :class="{
+      'border-greenSheen bg-greenSheen text-white': selected,
+      'bg-deepChampagne': !selected,
+    }"
     v-on:click="selectTimeslot"
   >
     {{ timeslot.time }}
     <p v-if="timeslot.name">{{ timeslot.name }}</p>
     <p v-else>freier Termin</p>
-    <span v-if="selected"> check </span>
   </li>
 </template>
 
@@ -18,8 +21,7 @@ export default {
     return { selected: false };
   },
   methods: {
-    selectTimeslot: function (e) {
-      console.log("click", e);
+    selectTimeslot: function () {
       this.selected = !this.selected;
       this.$emit("updateValue", {
         date: this.date,

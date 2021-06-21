@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1 class="text-red-500">Terminauswahl</h1>
+    <h2 class="text-independence text-lg mb-5">Terminauswahl</h2>
 
     <Input />
   </div>

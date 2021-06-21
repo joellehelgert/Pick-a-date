@@ -1,9 +1,9 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/selection">Terminauswahl</router-link> |
-    <router-link to="/overview">Terminübersicht</router-link>
+  <div class="m-auto p-3 max-w-screen-lg">
+    <h1 class="text-greenSheen text-2xl py-5">
+      VRS Masterarbeitsstudie Joelle
+    </h1>
+    <router-view />
   </div>
-  <router-view class="m-3" />
 </template>
 

@@ -1,13 +1,14 @@
 <template>
-  <div v-if="error">Sorry! An error has occured. Please Reload the page</div>
-  <div v-if="loading">
-    We are loading the monsters please wait for a moment. Sometimes they are a
-    little shy!
+  <div v-if="error">
+    Sorry! Ein Fehler ist aufgetreten, bitte lade die Seite nochmal neu!
   </div>
+  <div v-if="loading">einen Moment, der Kalendar wird geladen</div>
   <div v-if="!loading" class="Calendar">
     <button
       class="
         p-3
+        rounded
+        text-lg
         bg-yellow-100 bg-greenSheen
         border border-greenSheen
         text-white
@@ -17,19 +18,26 @@
       Termine auswählen
     </button>
     <div class="KW" v-for="date in dates" :key="date.KW">
-      <h2>KW {{ date.KW }}</h2>
+      <h2 class="text-greenSheen text-xl border-b border-greenSheen mb-3 p-4">
+        KW {{ date.KW }}
+      </h2>
 
       <ul
-        class="day w-1/5 flex flex-col p-2 rounded border-2 border-greenSheen"
+        class="
+          day
+          lg:w-1/5
+          flex flex-col
+          p-2
+          rounded
+          border-2 border-greenSheen
+        "
         v-for="days in date.days"
         :key="days.day"
       >
-        {{
-          days.day
-        }},
-        {{
-          days.date
-        }}
+        <span class="text-lg text-white bg-terraCotta rounded p-1">
+          {{ days.day }},
+          {{ days.date }}
+        </span>
         <Timeslot
           v-for="timeslot in days.timeslots"
           :key="days.day + timeslot.time"
@@ -107,6 +115,14 @@ export default {
               day.timeslots.forEach((timeslot) => {
                 if (timeslot.time == updatable.time) {
                   timeslot.name = this.username;
+                  if (timeslot.name == this.username) {
+                    timeslot.name = "";
+                  } else if (timeslot.name != "") {
+                    //TODO show error
+                    console.error("already taken");
+                  } else {
+                    timeslot.name = this.username;
+                  }
                 }
               });
             }

@@ -1,9 +1,10 @@
 <template>
   <div class="home">
-    <h1 class="text-red-500">VRS Masterarbeitsstudie Joelle</h1>
-    <p>Vielen Dank erstmal, dass du an meiner User Study teilnimmst!🥳</p>
-    <p>
-      Im Rahmen der Studie musst du mit meiner selbst gebauten Messstudie 3
+    <p class="text-xl mb-3">
+      Vielen Dank erstmal, dass du an meiner User Study teilnimmst!🥳
+    </p>
+    <p class="text-lg">
+      Im Rahmen der Studie musst du mit meiner selbst gebauten Messstation 3
       verschiedene Anwendungen testen und davor und danach einen Fragebogen
       ausfüllen. Das dauert ca. 30 Minuten pro Anwendung. Das einzige "Problem"
       ist, dass du zwischen den Anwendungen eine Pause von mindestens 60 Minuten
@@ -15,27 +16,33 @@
       Fall gesorgt!
     </p>
 
-    <router-link
-      class="
-        p-3
-        bg-yellow-100 bg-greenSheen
-        border border-greenSheen
-        text-white
-      "
-      to="/selection"
-      >Zur Terminauswahl</router-link
-    >
-    <router-link
-      class="
-        p-3
-        ml-3
-        bg-yellow-100 bg-greenSheen
-        border border-greenSheen
-        text-white
-      "
-      to="/overview"
-      >Zur Terminübersicht
-    </router-link>
+    <div class="mt-8">
+      <router-link
+        class="
+          p-3
+          rounded
+          text-lg
+          bg-greenSheen
+          border border-greenSheen
+          text-white
+        "
+        to="/selection"
+        >Zur Terminauswahl</router-link
+      >
+      <router-link
+        class="
+          p-3
+          rounded
+          text-lg
+          ml-3
+          bg-greenSheen
+          border border-greenSheen
+          text-white
+        "
+        to="/overview"
+        >Zur Terminübersicht
+      </router-link>
+    </div>
   </div>
 </template>
 
