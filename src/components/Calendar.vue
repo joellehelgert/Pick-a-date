@@ -70,7 +70,9 @@ export default {
     this.loading = true;
     this.error = null;
     axios
-      .get("/data/data.json")
+      .get(
+        "https://pick-a-date-44000-default-rtdb.europe-west1.firebasedatabase.app/calendar.json"
+      )
       .then((response) => {
         console.log(response.data);
         this.dates = response.data;
@@ -84,20 +86,18 @@ export default {
   methods: {
     selectTimeslots: function (e) {
       console.log("selecting all", e);
-      axios({
-        method: "post",
-        url: "/data/data.json",
-        data: this.dates,
-      });
-      // axios
-      //   .post("/data/data.json", this.dates)
-      //   .then((response) => {
-      //     console.log(response);
-      //   })
-      //   .catch((error) => {
-      //     console.error(error);
-      //     this.error = error;
-      //   });
+      axios
+        .put(
+          "https://pick-a-date-44000-default-rtdb.europe-west1.firebasedatabase.app/calendar.json",
+          this.dates
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+          this.error = error;
+        });
     },
     updateValue: function (updatable) {
       this.dates.forEach((elem) => {
