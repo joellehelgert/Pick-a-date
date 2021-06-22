@@ -2,8 +2,9 @@
   <li
     class="timeslot p-5 m-3 rounded border-2 border-transparent"
     :class="{
-      'border-greenSheen bg-greenSheen text-white': selected,
-      'bg-deepChampagne': !selected,
+      'border-greenSheen bg-greenSheen text-white': timeslot.selected,
+      'border-terraCotta': timeslot.error,
+      'bg-deepChampagne': !timeslot.selected,
     }"
     v-on:click="selectTimeslot"
   >
@@ -17,9 +18,6 @@
 export default {
   name: "Calendar",
   props: ["timeslot", "kw", "date", "time"],
-  data: () => {
-    return { selected: false };
-  },
   methods: {
     selectTimeslot: function () {
       this.selected = !this.selected;

@@ -4,19 +4,26 @@
   </div>
   <div v-if="loading">einen Moment, der Kalendar wird geladen</div>
   <div v-if="!loading" class="Calendar">
-    <button
-      class="
-        p-3
-        rounded
-        text-lg
-        bg-yellow-100 bg-greenSheen
-        border border-greenSheen
-        text-white
-      "
-      @click="selectTimeslots"
-    >
-      Termine auswählen
-    </button>
+    <div class="flex justify-between w-full">
+      <p
+        class="mt-3 text-lg"
+        :class="{ 'text-greenSheen': totalSelected == 3 }"
+      >
+        Es wurden {{ this.totalSelected }} von 3 Terminen ausgewählt
+      </p>
+      <button
+        class="p-3 rounded text-lg bg-orange-200 border border-orange-200"
+        :class="{
+          'bg-greenSheen border-greenSheen text-white cursor-pointer':
+            totalSelected == 3,
+          'cursor-not-allowed': totalSelected < 3,
+        }"
+        @click="selectTimeslots"
+      >
+        Termine auswählen
+      </button>
+    </div>
+
     <div class="KW" v-for="date in dates" :key="date.KW">
       <h2 class="text-greenSheen text-xl border-b border-greenSheen mb-3 p-4">
         KW {{ date.KW }}
@@ -72,6 +79,7 @@ export default {
       loading: false,
       error: null,
       dates: [],
+      totalSelected: 0,
     };
   },
   mounted: function () {
@@ -93,19 +101,21 @@ export default {
   },
   methods: {
     selectTimeslots: function (e) {
-      console.log("selecting all", e);
-      axios
-        .put(
-          "https://pick-a-date-44000-default-rtdb.europe-west1.firebasedatabase.app/calendar.json",
-          this.dates
-        )
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.error(error);
-          this.error = error;
-        });
+      if (this.totalSelected == 3) {
+        console.log("selecting all", e);
+        axios
+          .put(
+            "https://pick-a-date-44000-default-rtdb.europe-west1.firebasedatabase.app/calendar.json",
+            this.dates
+          )
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.error(error);
+            this.error = error;
+          });
+      }
     },
     updateValue: function (updatable) {
       this.dates.forEach((elem) => {
@@ -114,14 +124,17 @@ export default {
             if (day.date == updatable.date) {
               day.timeslots.forEach((timeslot) => {
                 if (timeslot.time == updatable.time) {
-                  timeslot.name = this.username;
                   if (timeslot.name == this.username) {
                     timeslot.name = "";
+                    timeslot.selected = false;
+                    this.totalSelected--;
                   } else if (timeslot.name != "") {
-                    //TODO show error
-                    console.error("already taken");
+                    timeslot.error = "Already taken";
+                    timeslot.selected = false;
                   } else {
+                    timeslot.selected = true;
                     timeslot.name = this.username;
+                    this.totalSelected++;
                   }
                 }
               });
