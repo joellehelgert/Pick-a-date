@@ -12,7 +12,7 @@
         Es wurden {{ this.totalSelected }} von 3 Terminen ausgewählt
       </p>
       <button
-        class="p-3 rounded text-lg bg-orange-200 border border-orange-200"
+        class="p-3 rounded text-lg border border-terraCotta"
         :class="{
           'bg-greenSheen border-greenSheen text-white cursor-pointer':
             totalSelected == 3,
@@ -24,20 +24,23 @@
       </button>
     </div>
 
-    <div class="KW" v-for="date in dates" :key="date.KW">
-      <h2 class="text-greenSheen text-xl border-b border-greenSheen mb-3 p-4">
+    <div class="KW flex flex-wrap" v-for="date in dates" :key="date.KW">
+      <h2
+        class="
+          w-full
+          text-greenSheen text-xl
+          border-2 border-greenSheen
+          rounded
+          mb-3
+          mt-6
+          p-4
+        "
+      >
         KW {{ date.KW }}
       </h2>
 
       <ul
-        class="
-          day
-          lg:w-1/5
-          flex flex-col
-          p-2
-          rounded
-          border-2 border-greenSheen
-        "
+        class="day w-full lg:w-1/6 flex flex-col p-2"
         v-for="days in date.days"
         :key="days.day"
       >
@@ -45,17 +48,22 @@
           {{ days.day }},
           {{ days.date }}
         </span>
-        <Timeslot
-          v-for="timeslot in days.timeslots"
-          :key="days.day + timeslot.time"
-          :kw="date.KW"
-          :date="days.date"
-          :time="timeslot.time"
-          :username="username"
-          :timeslot="timeslot"
-          @update-value="updateValue"
-        >
-        </Timeslot>
+        <template v-if="!loading && !days.timeslots">
+          <p class="mt-6">keine Termine für diesen Tag</p>
+        </template>
+        <div class="h-full flex flex-col justify-end">
+          <Timeslot
+            v-for="timeslot in days.timeslots"
+            :key="days.day + timeslot.time"
+            :kw="date.KW"
+            :date="days.date"
+            :time="timeslot.time"
+            :username="username"
+            :timeslot="timeslot"
+            @update-value="updateValue"
+          >
+          </Timeslot>
+        </div>
       </ul>
     </div>
   </div>

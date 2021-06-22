@@ -1,6 +1,6 @@
 <template>
   <li
-    class="timeslot p-5 m-3 rounded border-2 border-transparent"
+    class="timeslot p-2 m-2 rounded border-2 border-transparent"
     :class="setStatus()"
     v-on:click="selectTimeslot"
   >

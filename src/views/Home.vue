@@ -11,9 +11,9 @@
       machen musst. Deshalb würde ich dich bitten, dir im nächsten Schritt 3
       Termine auszusuchen, an denne du Zeit und Lust hast das ganze zu machen.
       Die User Study selbst findet am FH Campus Hagenberg (FH 2 Ebene 3 Raum
-      ---) statt. Je nach Anreise etc kannst du gern in den Wartezeiten bei uns
-      zu Hause im Garten etwas entspannen. Für Snacks und Getränke ist auf jeden
-      Fall gesorgt!
+      MRS.A (FH2.347)) statt. Je nach Anreise etc kannst du gern in den
+      Wartezeiten bei uns zu Hause im Garten etwas entspannen. Für Snacks und
+      Getränke ist auf jeden Fall gesorgt!
     </p>
 
     <div class="mt-8">
