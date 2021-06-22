@@ -117,17 +117,44 @@ export default {
           });
       }
     },
+    applyRules: function (current, arr, index, value) {
+      const check = [-2, -1, 1, 2];
+      check.forEach((operator) => {
+        let elem = arr[index + operator];
+        if (elem) {
+          if (
+            elem.start - current.start < -149 ||
+            elem.start - current.start < 150
+          ) {
+            // not disabled
+            arr[index + operator].disabled = value;
+          } else {
+            // disabled
+            arr[index + operator].disabled = !value;
+          }
+        }
+      });
+
+      return arr;
+    },
     updateValue: function (updatable) {
       this.dates.forEach((elem) => {
         if (elem.KW == updatable.kw) {
           elem.days.forEach((day) => {
             if (day.date == updatable.date) {
-              day.timeslots.forEach((timeslot) => {
+              day.timeslots.forEach((timeslot, index) => {
                 if (timeslot.time == updatable.time) {
                   if (timeslot.name == this.username) {
                     timeslot.name = "";
                     timeslot.selected = false;
                     this.totalSelected--;
+
+                    day.timeslots = this.applyRules(
+                      timeslot,
+                      day.timeslots,
+                      index,
+                      false
+                    );
                   } else if (timeslot.name != "") {
                     timeslot.error = "Already taken";
                     timeslot.selected = false;
@@ -135,6 +162,12 @@ export default {
                     timeslot.selected = true;
                     timeslot.name = this.username;
                     this.totalSelected++;
+                    day.timeslots = this.applyRules(
+                      timeslot,
+                      day.timeslots,
+                      index,
+                      true
+                    );
                   }
                 }
               });
