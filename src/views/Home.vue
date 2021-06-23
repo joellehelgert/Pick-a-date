@@ -16,7 +16,7 @@
       Getränke ist auf jeden Fall gesorgt!
     </p>
 
-    <div class="mt-8">
+    <div class="mt-8 flex justify-center">
       <router-link
         class="
           p-3
