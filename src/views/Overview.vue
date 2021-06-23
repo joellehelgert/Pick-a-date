@@ -1,7 +1,7 @@
 <template>
   <div class="overview">
-    <h1>Terminübersicht</h1>
-    <Calendar> </Calendar>
+    <h2 class="text-greenSheen text-xl">Terminübersicht</h2>
+    <Calendar :interactable="false"> </Calendar>
   </div>
 </template>
 

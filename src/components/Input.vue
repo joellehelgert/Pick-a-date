@@ -1,6 +1,6 @@
 <template>
   <div v-if="showCalendar">
-    <Calendar :username="username" />
+    <Calendar :username="username" :interactable="true" />
   </div>
   <div v-else>
     <input

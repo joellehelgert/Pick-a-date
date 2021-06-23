@@ -13,7 +13,7 @@
 <script>
 export default {
   name: "Calendar",
-  props: ["timeslot", "kw", "date", "time"],
+  props: ["timeslot", "kw", "date", "time", "disabled"],
   methods: {
     setStatus: function () {
       if (this.timeslot.selected) {
@@ -22,6 +22,8 @@ export default {
         return "border-terraCotta cursor-not-allowed";
       } else if (this.timeslot.disabled) {
         return "bg-transparent border-terraCotta cursor-not-allowed";
+      } else if (this.disabled) {
+        return " bg-deepChampagne pointer-events-none";
       } else {
         return " bg-deepChampagne cursor-pointer";
       }

@@ -4,7 +4,10 @@
   </div>
   <div v-if="loading">einen Moment, der Kalendar wird geladen</div>
   <div v-if="!loading" class="Calendar">
-    <div class="flex justify-between w-full">
+    <div
+      class="flex justify-between w-full"
+      :class="{ hidden: !this.interactable }"
+    >
       <p
         class="mt-3 text-lg"
         :class="{ 'text-greenSheen': totalSelected == 3 }"
@@ -60,6 +63,7 @@
             :time="timeslot.time"
             :username="username"
             :timeslot="timeslot"
+            :disabled="disabled"
             @update-value="updateValue"
           >
           </Timeslot>
@@ -81,6 +85,10 @@ export default {
       type: String,
       required: false,
     },
+    interactable: {
+      type: Boolean,
+      required: true,
+    },
   },
   data: function () {
     return {
@@ -93,12 +101,12 @@ export default {
   mounted: function () {
     this.loading = true;
     this.error = null;
+    this.disabled = !this.interactable;
     axios
       .get(
         "https://pick-a-date-44000-default-rtdb.europe-west1.firebasedatabase.app/calendar.json"
       )
       .then((response) => {
-        console.log(response.data);
         this.dates = response.data;
         this.loading = false;
       })
@@ -108,9 +116,19 @@ export default {
       });
   },
   methods: {
-    selectTimeslots: function (e) {
+    selectTimeslots: function () {
       if (this.totalSelected == 3) {
-        console.log("selecting all", e);
+        this.dates.forEach((elem) => {
+          elem.days.forEach((day) => {
+            if (day.timeslots) {
+              day.timeslots.forEach((timeslot) => {
+                timeslot.selected = false;
+                timeslot.disabled = false;
+              });
+            }
+          });
+        });
+
         axios
           .put(
             "https://pick-a-date-44000-default-rtdb.europe-west1.firebasedatabase.app/calendar.json",
@@ -177,6 +195,8 @@ export default {
                       true
                     );
                   }
+
+                  this.disabled = this.totalSelected >= 3;
                 }
               });
             }
